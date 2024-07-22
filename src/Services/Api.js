@@ -13,26 +13,40 @@ const fetchTvShows = async (year) => {
   return response.data.Search.filter(show => show.Type === 'series' || show.Type === 'tvSeries');
 };
 
-const fetchMovieDetails = async (movieID) => {
-  const response = await axios.get(`${BASE_URL}?apikey=${API_KEY}&i=${movieID}&plot=full`);
-  return response.data;
+const fetchBestReviewedMovies = async (page, year) => {
+  const response = await axios.get(`${BASE_URL}`, {
+    params: {
+      apikey: API_KEY,
+      s: 'best',
+      type: 'movie',
+      y: year,
+      page: page,
+    },
+  });
+  return {
+    movies: response.data.Search,
+    totalPages: Math.ceil(response.data.totalResults / 10)
+  };
+};
+const fetchNewAndPopular = async (year, page) => {
+  try {
+    const response = await axios.get(`${BASE_URL}?s=movie&type=movie&y=${year}&apikey=${API_KEY}&page=${page}`);
+    // const response = await axios.get(`${BASE_URL}?apikey=${API_KEY}&s=series&y=${year}`);
+    return response.data.Search || []; // Return an empty array if no items are found
+  } catch (error) {
+    console.error('Error fetching new and popular items:', error);
+    return [];
+  }
 };
 
-const fetchBestReviewedMovies = async (page, year) => {
-    const response = await axios.get(`${BASE_URL}`, {
-      params: {
-        apikey: API_KEY,
-        s: 'best',
-        type: 'movie',
-        y: year,
-        page: page,
-      },
-    });
-    return {
-      movies: response.data.Search,
-      totalPages: Math.ceil(response.data.totalResults / 10)
-    };
-  };
+const fetchMovieDetails = async (id) => {
+  try {
+    const response = await axios.get(`${BASE_URL}?i=${id}&apikey=${API_KEY}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching movie details:', error);
+    return null;
+  }
+};
   
-
-export { fetchBestReviewedMovies, fetchMovies, fetchTvShows, fetchMovieDetails };
+export { fetchNewAndPopular, fetchBestReviewedMovies, fetchMovies, fetchTvShows, fetchMovieDetails };
