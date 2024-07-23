@@ -1,12 +1,10 @@
-/* home.css */
-
 .home-page {
   background: url('https://assets.nflxext.com/ffe/siteui/vlv3/655a9668-b002-4262-8afb-cf71e45d1956/5ff265b6-3037-44b2-b071-e81750b21783/IN-en-20240715-POP_SIGNUP_TWO_WEEKS-perspective_WEB_c6d6616f-4478-4ac2-bdac-f54b444771dd_small.jpg') 
   no-repeat center center fixed;
   background-size: cover;
   position: relative;
   min-height: 100vh;
-  padding-top: 56px; /* Ensure content is below the fixed navbar */
+  padding-top: 2px; 
 }
 
 .home-page::before {
@@ -26,7 +24,7 @@
 
 h1 {
   margin-bottom: 1rem;
-  color: #ffffff; /* Ensure the heading text is visible */
+  color: #ffffff; 
 }
 
 .card {
@@ -47,7 +45,7 @@ h1 {
 
 .movie-card img {
   object-fit: cover;
-  height: 350px; /* Adjust height as needed */
+  height: 100px; 
   width: 100%;
 }
 
@@ -89,11 +87,10 @@ option {
   color: #000000;
 }
 
-/* Navbar fix on scroll */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* Ensure the navbar is above other content */
+  z-index: 1000; 
 }

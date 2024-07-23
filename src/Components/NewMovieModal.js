@@ -10,7 +10,6 @@ function NewMovieModal({ show, handleClose, movie, handleTrailer }) {
       </Modal.Header>
       <Modal.Body>
         <div className="movie-details">
-          {/* <img src={movie.Poster} alt={movie.Title} className="modal-poster"/> */}
           <div className="modal-info">
             <p><strong>Year:</strong> {movie.Year}</p>
             <p><strong>Genre:</strong> {movie.Genre}</p>

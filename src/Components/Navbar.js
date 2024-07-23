@@ -32,11 +32,9 @@ function Navigation() {
   const handleCardClick = async (movieId) => {
     try {
       const response = await axios.get(`http://www.omdbapi.com/?i=${movieId}&apikey=c848f0d8`);
-      const movieData = {
-        ...response.data,
-        Trailer: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'  // Hardcoded trailer link for testing
-      };
-      setSelectedMovie(movieData);
+      const movieData = response.data;
+      const trailerUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(movieData.Title + " trailer")}`;
+      setSelectedMovie({ ...movieData, Trailer: trailerUrl });
     } catch (error) {
       console.error('Error fetching movie details:', error);
     }
@@ -77,7 +75,7 @@ function Navigation() {
           </Navbar.Collapse>
         </div>
       </Navbar>
-
+      {/* ===================(NAV MOVIE MODAL)=================== */}
       <Modal show={showModal} onHide={handleClose} size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title>Search Results</Modal.Title>

@@ -28,11 +28,12 @@ const fetchBestReviewedMovies = async (page, year) => {
     totalPages: Math.ceil(response.data.totalResults / 10)
   };
 };
+
 const fetchNewAndPopular = async (year, page) => {
   try {
     const response = await axios.get(`${BASE_URL}?s=movie&type=movie&y=${year}&apikey=${API_KEY}&page=${page}`);
     // const response = await axios.get(`${BASE_URL}?apikey=${API_KEY}&s=series&y=${year}`);
-    return response.data.Search || []; // Return an empty array if no items are found
+    return response.data.Search || []; 
   } catch (error) {
     console.error('Error fetching new and popular items:', error);
     return [];

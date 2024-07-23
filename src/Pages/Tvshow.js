@@ -12,6 +12,7 @@ import './TvShows.css';
 const placeholderPoster = 'https://via.placeholder.com/300x450?text=Poster+Not+Available';
 
 function TvShows() {
+  document.title = 'Movies Review - Tvshow';
   const [tvShows, setTvShows] = useState([]);
   const [selectedShow, setSelectedShow] = useState(null);
   const [showModal, setShowModal] = useState(false);

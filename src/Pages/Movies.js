@@ -12,6 +12,7 @@ import './Movies.css';
 import Navbar from '../Components/Navbar';
 
 function Movies() {
+  document.title = 'Movies Review - Movies';
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -53,7 +54,7 @@ function Movies() {
 
   const handleYearChange = (e) => {
     setYear(e.target.value);
-    setCurrentPage(1); // Reset to first page on year change
+    setCurrentPage(1); 
   };
 
   return (
@@ -77,7 +78,7 @@ function Movies() {
                 <Card className="bg-dark text-white movie-card">
                   <Card.Img 
                     variant="top" 
-                    src={movie.Poster !== 'N/A' ? movie.Poster : 'placeholder-image-url'} 
+                    src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/300x450?text=Poster+Not+Available'} 
                     alt={movie.Title} 
                     onClick={() => handleCardClick(movie.imdbID)}
                   />

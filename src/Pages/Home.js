@@ -12,6 +12,7 @@ import './Home.css';
 const placeholderPoster = 'https://via.placeholder.com/300x450?text=Poster+Not+Available';
 
 function Home() {
+  document.title = 'Movies Review - Home';
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showModal, setShowModal] = useState(false);

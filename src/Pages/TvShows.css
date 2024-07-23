@@ -1,12 +1,10 @@
-/* tvshow.css */
-
 .tv-shows-page {
   min-height: 100vh;
   background: url('https://assets.nflxext.com/ffe/siteui/vlv3/655a9668-b002-4262-8afb-cf71e45d1956/5ff265b6-3037-44b2-b071-e81750b21783/IN-en-20240715-POP_SIGNUP_TWO_WEEKS-perspective_WEB_c6d6616f-4478-4ac2-bdac-f54b444771dd_small.jpg') 
   no-repeat center center fixed;
   background-size: cover;
   position: relative;
-  padding-top: 56px; /* Ensure content is below the fixed navbar */
+  padding-top: 2px;
 }
 
 .tv-shows-page::before {
@@ -16,7 +14,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  background-color: rgba(0, 0, 0, 0.5); 
 }
 
 .container {
@@ -26,7 +24,7 @@
 
 h1 {
   margin-bottom: 1rem;
-  color: #ffffff; /* Ensure the heading text is visible */
+  color: #ffffff; 
 }
 
 /* TV Show Card */
@@ -37,7 +35,7 @@ h1 {
 }
 
 .tv-show-card img {
-  height: 350px; /* Adjust height as needed */
+  height: 350px; 
   object-fit: cover;
   width: 100%;
 }
@@ -47,7 +45,6 @@ h1 {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Form Control */
 .form-label, .form-control {
   color: #ffffff;
 }
@@ -86,7 +83,7 @@ option {
   color: #000000;
 }
 
-/* Animation for the year-select */
+
 .year-select-form-group {
   animation: fadeIn 1s ease-in-out;
 }
@@ -102,7 +99,6 @@ option {
   }
 }
 
-/* Animation for TV show cards */
 .tv-show-card {
   animation: fadeUp 0.8s ease-in-out;
 }
@@ -118,12 +114,10 @@ option {
   }
 }
 
-/* Button Animation */
 button {
   animation: fadeIn 1s ease-in-out;
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
   .tv-show-card img {
     height: 300px;

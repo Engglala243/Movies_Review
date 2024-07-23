@@ -11,6 +11,7 @@ import Navbar from '../Components/Navbar';
 import './NewPopular.css';
 
 function NewPopular() {
+  document.title = 'Movies Review - New & Popular';
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -35,7 +36,7 @@ function NewPopular() {
 
   const handleYearChange = (e) => {
     setYear(e.target.value);
-    setCurrentPage(1); // Reset to first page on year change
+    setCurrentPage(1); 
   };
 
   const handleNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
@@ -61,7 +62,7 @@ function NewPopular() {
               movies.map(movie => (
                 <Col key={movie.imdbID} xs={12} sm={6} md={4} lg={3} className="mb-4">
                   <Card className="bg-dark text-white movie-card" onClick={() => handleCardClick(movie.imdbID)}>
-                    <Card.Img variant="top" src={movie.Poster} alt={movie.Title} />
+                    <Card.Img variant="top" src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/300x450?text=Poster+Not+Available'} alt={movie.Title} />
                     <Card.ImgOverlay>
                       <Card.Title>{movie.Title}</Card.Title>
                     </Card.ImgOverlay>
