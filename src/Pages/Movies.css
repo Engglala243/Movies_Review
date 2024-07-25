@@ -4,7 +4,7 @@
   no-repeat center center fixed;
   background-size: cover;
   position: relative;
-  padding-top: 2px;
+  padding-top: 40px;
 }
 
 .movies-page::before {

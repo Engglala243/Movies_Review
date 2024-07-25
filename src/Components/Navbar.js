@@ -49,7 +49,7 @@ function Navigation() {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar className='navbar fixed-top navbar-expand-lg navbar-dark bg-dark'>
         <div className="container-fluid">
           <Navbar.Brand as={Link} to="/"><img src="/android-icon-36x36.png" alt="MR" /></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -107,7 +107,7 @@ function Navigation() {
       </Modal>
 
       {selectedMovie && (
-        <Modal show={Boolean(selectedMovie)} onHide={() => setSelectedMovie(null)} size="lg" centered>
+        <Modal show={Boolean(selectedMovie)} onHide={() => setSelectedMovie(null)} size="sm" centered>
           <Modal.Header closeButton>
             <Modal.Title>{selectedMovie.Title}</Modal.Title>
           </Modal.Header>
