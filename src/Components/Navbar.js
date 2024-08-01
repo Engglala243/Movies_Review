@@ -18,7 +18,7 @@ function Navigation() {
     e.preventDefault();
     if (searchQuery) {
       try {
-        const response = await axios.get(`http://www.omdbapi.com/?s=${searchQuery}&apikey=c848f0d8`);
+        const response = await axios.get(`http://www.omdbapi.com?s=${searchQuery}&apikey=c848f0d8`);
         setSearchResults(response.data.Search || []);
         setShowModal(true);
       } catch (error) {
@@ -31,7 +31,7 @@ function Navigation() {
 
   const handleCardClick = async (movieId) => {
     try {
-      const response = await axios.get(`http://www.omdbapi.com/?i=${movieId}&apikey=c848f0d8`);
+      const response = await axios.get(`http://www.omdbapi.com?i=${movieId}&apikey=c848f0d8`);
       const movieData = response.data;
       const trailerUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(movieData.Title + " trailer")}`;
       setSelectedMovie({ ...movieData, Trailer: trailerUrl });
