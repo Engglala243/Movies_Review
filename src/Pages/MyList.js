@@ -18,7 +18,7 @@ let MyList = () => {
   useEffect(() => {
     let fetchMovies = async () => {
       try {
-        let response = await axios.get(`http://www.omdbapi.com?s=movie&apikey=c848f0d8`);
+        let response = await axios.get(`https://www.omdbapi.com?s=movie&apikey=c848f0d8`);
         if (response.data.Response === "True") {
           setMovies(response.data.Search || []);
         } else {
@@ -34,7 +34,7 @@ let MyList = () => {
 
   let handleCardClick = async (movieId) => {
     try {
-      let response = await axios.get(`http://www.omdbapi.com?i=${movieId}&apikey=c848f0d8`);
+      let response = await axios.get(`https://www.omdbapi.com?i=${movieId}&apikey=c848f0d8`);
       if (response.data.Response === "True") {
         let movieData = response.data;
         setSelectedMovie(movieData);
@@ -73,7 +73,7 @@ let MyList = () => {
     e.preventDefault();
     if (searchQuery) {
       try {
-        let response = await axios.get(`http://www.omdbapi.com?s=${searchQuery}&apikey=c848f0d8`);
+        let response = await axios.get(`https://www.omdbapi.com?s=${searchQuery}&apikey=c848f0d8`);
         if (response.data.Response === "True") {
           setSearchResults(response.data.Search || []);
         } else {
