@@ -1,0 +1,14 @@
+/* Hide the three dots menu on large screens */
+@media (min-width: 992px) {
+    .d-lg-none {
+      display: none;
+    }
+  }
+  
+  /* Optional: Adjust navbar items for small screens */
+  @media (max-width: 767.98px) {
+    .navbar-nav {
+      flex-direction: column;
+    }
+  }
+  

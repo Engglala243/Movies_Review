@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navbar, Nav, Form, Button, Modal, Card, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './Navbar.css';
 
 function Navigation() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -52,9 +53,9 @@ function Navigation() {
       <Navbar className='navbar fixed-top navbar-expand-lg navbar-dark bg-dark'>
         <div className="container-fluid">
           <Navbar.Brand as={Link} to="/"><img src="/android-icon-36x36.png" alt="MR" /></Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="d-lg-none" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
+            <Nav className="me-auto">
               <Nav.Link as={Link} to="/">Home</Nav.Link>
               <Nav.Link as={Link} to="/tvshows">TV Shows</Nav.Link>
               <Nav.Link as={Link} to="/movies">Movies</Nav.Link>
@@ -73,8 +74,13 @@ function Navigation() {
               <Button variant="outline-info" type="submit">Search</Button>
             </Form>
           </Navbar.Collapse>
+          {/* Three dots menu visible only on small screens */}
+          <div className="d-lg-none">
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          </div>
         </div>
       </Navbar>
+
       {/* ===================(NAV MOVIE MODAL)=================== */}
       <Modal show={showModal} onHide={handleClose} size="lg" centered>
         <Modal.Header closeButton>
