@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Form, Button, Modal, Card, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -10,6 +10,8 @@ function Navigation() {
   const [showModal, setShowModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [likedMovies, setLikedMovies] = useState({});
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -48,38 +50,89 @@ function Navigation() {
     }));
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
-      <Navbar className='navbar fixed-top navbar-expand-lg navbar-dark bg-dark'>
-        <div className="container-fluid">
-          <Navbar.Brand as={Link} to="/"><img src="/android-icon-36x36.png" alt="MR" /></Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" className="d-lg-none" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+      <nav className={`custom-navbar ${isScrolled ? 'scrolled' : ''}`}>
+        <div className="navbar-container">
+          {/* Logo */}
+          <Link to="/" className="navbar-brand" onClick={closeMenu}>
+            <img src="/android-icon-36x36.png" alt="MR" />
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="desktop-nav">
+            <Nav className="nav-links">
               <Nav.Link as={Link} to="/">Home</Nav.Link>
               <Nav.Link as={Link} to="/tvshows">TV Shows</Nav.Link>
               <Nav.Link as={Link} to="/movies">Movies</Nav.Link>
               <Nav.Link as={Link} to="/newpopular">New & Popular</Nav.Link>
               <Nav.Link as={Link} to="/mylist">My List</Nav.Link>
             </Nav>
-            <Form className="d-flex" onSubmit={handleSearchSubmit}>
+            
+            {/* Desktop Search */}
+            <Form className="desktop-search" onSubmit={handleSearchSubmit}>
               <Form.Control
                 type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
+                placeholder="Search movies..."
                 value={searchQuery}
                 onChange={handleSearchChange}
               />
-              <Button variant="outline-info" type="submit">Search</Button>
+              <Button variant="outline-info" type="submit">
+                <i className="fas fa-search"></i>
+              </Button>
             </Form>
-          </Navbar.Collapse>
-          {/* Three dots menu visible only on small screens */}
-          <div className="d-lg-none">
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button className="mobile-menu-btn" onClick={toggleMenu}>
+            <span className={`hamburger ${isMenuOpen ? 'active' : ''}`}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <div className={`mobile-menu-overlay ${isMenuOpen ? 'active' : ''}`} onClick={closeMenu}></div>
+        
+        {/* Mobile Menu */}
+        <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
+          <div className="mobile-menu-header">
+            <Link to="/" className="mobile-brand" onClick={closeMenu}>
+              <img src="/android-icon-36x36.png" alt="MR" />
+              <span>Movie Reviews</span>
+            </Link>
+            <button className="close-btn" onClick={closeMenu}>
+              <i className="fas fa-times"></i>
+            </button>
+          </div>
+          
+          <div className="mobile-nav-links">
+            <Link to="/" onClick={closeMenu}>Home</Link>
+            <Link to="/tvshows" onClick={closeMenu}>TV Shows</Link>
+            <Link to="/movies" onClick={closeMenu}>Movies</Link>
+            <Link to="/newpopular" onClick={closeMenu}>New & Popular</Link>
+            <Link to="/mylist" onClick={closeMenu}>My List</Link>
           </div>
         </div>
-      </Navbar>
+      </nav>
 
       {/* ===================(NAV MOVIE MODAL)=================== */}
       <Modal show={showModal} onHide={handleClose} size="lg" centered>

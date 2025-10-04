@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  padding-top: 80px; /* Space for fixed navbar */
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  color: #fff;
 }
 
 .App-logo {
@@ -14,8 +18,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #0a0a0a;
+  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   align-items: center;
